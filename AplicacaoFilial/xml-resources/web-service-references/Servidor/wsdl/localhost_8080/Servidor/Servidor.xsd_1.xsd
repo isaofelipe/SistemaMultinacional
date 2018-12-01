@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://controle/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://controle/">
+
+<xs:element name="adiciona" type="tns:adiciona"/>
+
+<xs:element name="adicionaResponse" type="tns:adicionaResponse"/>
+
+<xs:element name="cadastra_cliente" type="tns:cadastra_cliente"/>
+
+<xs:element name="cadastra_clienteResponse" type="tns:cadastra_clienteResponse"/>
+
+<xs:element name="consulta_cliente" type="tns:consulta_cliente"/>
+
+<xs:element name="consulta_clienteResponse" type="tns:consulta_clienteResponse"/>
+
+<xs:element name="consultar_produtos" type="tns:consultar_produtos"/>
+
+<xs:element name="consultar_produtosResponse" type="tns:consultar_produtosResponse"/>
+
+<xs:element name="hello" type="tns:hello"/>
+
+<xs:element name="helloResponse" type="tns:helloResponse"/>
+
+<xs:element name="realizar_compra" type="tns:realizar_compra"/>
+
+<xs:element name="realizar_compraResponse" type="tns:realizar_compraResponse"/>
+
+<xs:complexType name="hello">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="helloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="adiciona">
+<xs:sequence>
+<xs:element name="a" type="xs:int"/>
+<xs:element name="b" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="adicionaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cadastra_cliente">
+<xs:sequence>
+<xs:element name="nome" type="xs:string" minOccurs="0"/>
+<xs:element name="telefone" type="xs:string" minOccurs="0"/>
+<xs:element name="endereco" type="xs:string" minOccurs="0"/>
+<xs:element name="filial" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cadastra_clienteResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="consulta_cliente">
+<xs:sequence>
+<xs:element name="nome" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="consulta_clienteResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:cliente" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cliente">
+<xs:sequence>
+<xs:element name="endereco" type="xs:string" minOccurs="0"/>
+<xs:element name="filial" type="xs:string" minOccurs="0"/>
+<xs:element name="nome" type="xs:string" minOccurs="0"/>
+<xs:element name="telefone" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="realizar_compra">
+<xs:sequence>
+<xs:element name="cliente" type="xs:string" minOccurs="0"/>
+<xs:element name="produto" type="xs:string" minOccurs="0"/>
+<xs:element name="quantidade" type="xs:int"/>
+<xs:element name="filial" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="realizar_compraResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="consultar_produtos">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="consultar_produtosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:produto" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="produto">
+<xs:sequence>
+<xs:element name="nome" type="xs:string" minOccurs="0"/>
+<xs:element name="preco" type="xs:float"/>
+<xs:element name="quantidade" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
