@@ -14,6 +14,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import modelo.Cliente;
 import modelo.Compra;
+import modelo.Erro;
 import modelo.Produto;
 
 /**
@@ -66,9 +67,28 @@ public class Servidor {
      * Operação de Web service
      */
     @WebMethod(operationName = "realizar_compra")
-    public boolean realizar_compra(@WebParam(name = "cliente") String cliente, @WebParam(name = "produto") String produto, @WebParam(name = "quantidade") int quantidade, @WebParam(name = "filial") String filial) {
-        Compra c = new Compra(cliente, produto, quantidade, filial);
-        return true;
+    public Erro realizar_compra(@WebParam(name = "cliente") String cliente, @WebParam(name = "produto") String produto, @WebParam(name = "quantidade") int quantidade, @WebParam(name = "filial") String filial) {
+        Cliente c = clienteDAO.getOne(cliente);
+        Erro erro = new Erro();
+        Produto p = produtoDAO.getOne(produto);
+        if (c == null){
+            erro.setMensagem("Cliente inexistente");
+        }
+        else if (!c.getFilial().equals(filial)){
+            erro.setMensagem("O cliente está cadastrado em outra filial");
+        }
+        else if (p == null){
+            erro.setMensagem("Produto inválido");
+        }
+        else if(p.getQuantidade() < quantidade){
+            erro.setMensagem("Não há estoque disponivel do produto");
+        }
+        else{
+            erro.setSucesso(true);
+            erro.setMensagem("Sucesso!");
+            produtoDAO.atualizarProduto(p, quantidade);
+        }
+        return erro;
     }
 
     /**

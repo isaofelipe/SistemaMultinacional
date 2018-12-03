@@ -141,6 +141,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Erro }
+     * 
+     */
+    public Erro createErro() {
+        return new Erro();
+    }
+
+    /**
      * Create an instance of {@link Cliente }
      * 
      */

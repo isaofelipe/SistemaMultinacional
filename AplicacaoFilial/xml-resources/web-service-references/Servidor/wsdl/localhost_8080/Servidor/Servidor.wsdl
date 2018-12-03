@@ -4,12 +4,6 @@
 <xsd:import namespace="http://controle/" schemaLocation="http://localhost:8080/Servidor/Servidor?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="consultar_produtos">
-<part name="parameters" element="tns:consultar_produtos"/>
-</message>
-<message name="consultar_produtosResponse">
-<part name="parameters" element="tns:consultar_produtosResponse"/>
-</message>
 <message name="consulta_cliente">
 <part name="parameters" element="tns:consulta_cliente"/>
 </message>
@@ -21,6 +15,12 @@
 </message>
 <message name="helloResponse">
 <part name="parameters" element="tns:helloResponse"/>
+</message>
+<message name="adiciona">
+<part name="parameters" element="tns:adiciona"/>
+</message>
+<message name="adicionaResponse">
+<part name="parameters" element="tns:adicionaResponse"/>
 </message>
 <message name="cadastra_cliente">
 <part name="parameters" element="tns:cadastra_cliente"/>
@@ -34,17 +34,13 @@
 <message name="realizar_compraResponse">
 <part name="parameters" element="tns:realizar_compraResponse"/>
 </message>
-<message name="adiciona">
-<part name="parameters" element="tns:adiciona"/>
+<message name="consultar_produtos">
+<part name="parameters" element="tns:consultar_produtos"/>
 </message>
-<message name="adicionaResponse">
-<part name="parameters" element="tns:adicionaResponse"/>
+<message name="consultar_produtosResponse">
+<part name="parameters" element="tns:consultar_produtosResponse"/>
 </message>
 <portType name="Servidor">
-<operation name="consultar_produtos">
-<input wsam:Action="http://controle/Servidor/consultar_produtosRequest" message="tns:consultar_produtos"/>
-<output wsam:Action="http://controle/Servidor/consultar_produtosResponse" message="tns:consultar_produtosResponse"/>
-</operation>
 <operation name="consulta_cliente">
 <input wsam:Action="http://controle/Servidor/consulta_clienteRequest" message="tns:consulta_cliente"/>
 <output wsam:Action="http://controle/Servidor/consulta_clienteResponse" message="tns:consulta_clienteResponse"/>
@@ -52,6 +48,10 @@
 <operation name="hello">
 <input wsam:Action="http://controle/Servidor/helloRequest" message="tns:hello"/>
 <output wsam:Action="http://controle/Servidor/helloResponse" message="tns:helloResponse"/>
+</operation>
+<operation name="adiciona">
+<input wsam:Action="http://controle/Servidor/adicionaRequest" message="tns:adiciona"/>
+<output wsam:Action="http://controle/Servidor/adicionaResponse" message="tns:adicionaResponse"/>
 </operation>
 <operation name="cadastra_cliente">
 <input wsam:Action="http://controle/Servidor/cadastra_clienteRequest" message="tns:cadastra_cliente"/>
@@ -61,22 +61,13 @@
 <input wsam:Action="http://controle/Servidor/realizar_compraRequest" message="tns:realizar_compra"/>
 <output wsam:Action="http://controle/Servidor/realizar_compraResponse" message="tns:realizar_compraResponse"/>
 </operation>
-<operation name="adiciona">
-<input wsam:Action="http://controle/Servidor/adicionaRequest" message="tns:adiciona"/>
-<output wsam:Action="http://controle/Servidor/adicionaResponse" message="tns:adicionaResponse"/>
+<operation name="consultar_produtos">
+<input wsam:Action="http://controle/Servidor/consultar_produtosRequest" message="tns:consultar_produtos"/>
+<output wsam:Action="http://controle/Servidor/consultar_produtosResponse" message="tns:consultar_produtosResponse"/>
 </operation>
 </portType>
 <binding name="ServidorPortBinding" type="tns:Servidor">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="consultar_produtos">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="consulta_cliente">
 <soap:operation soapAction=""/>
 <input>
@@ -87,6 +78,15 @@
 </output>
 </operation>
 <operation name="hello">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="adiciona">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -113,7 +113,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="adiciona">
+<operation name="consultar_produtos">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

@@ -6,6 +6,7 @@
 package client;
 
 import controle.Cliente;
+import controle.Erro;
 import controle.Produto;
 import controle.Servidor;
 import controle.Servidor_Service;
@@ -32,13 +33,18 @@ public class Main {
             int escolha = 0;
             System.out.println("1. Cadastrar cliente\n2. Verificar Cadastro\n3. Realizar Compra\n4. Consultar Produtos\n5. Sair\n\n");
             System.out.println("Sua escolha: ");
+            scan.nextLine();
             escolha = scan.nextInt();
             switch (escolha) {
                 case 1:
                     {
                         System.out.println("\nCadastro\n\nDigite seu nome:");
                         nomeCliente = scan.next();
-                        port.cadastraCliente(nomeCliente, "3213213213", "Rua tal", nomeFilial); //Fazer leitura de todos os dados do cliente
+                        System.out.println("\nDigite o telefone:");
+                        String telefone = scan.next();
+                        System.out.println("\nDigite sua rua:");
+                        String rua = scan.next();
+                        port.cadastraCliente(nomeCliente, telefone, rua, nomeFilial);
                         System.out.println("Cadastro feito com sucesso\n");
                         System.out.println("Pressione enter para continuar...\n");
                         System.in.read();
@@ -67,8 +73,15 @@ public class Main {
                     String produto = scan.next();
                     System.out.println("\nDigite a quantidade:");
                     int quantidade = Integer.parseInt(scan.next());
-                    port.realizarCompra(nomeCliente, produto, quantidade, nomeFilial);
-                    System.out.println("Pressione enter para continuar...\n");
+                    Erro erro = port.realizarCompra(nomeCliente, produto, quantidade, nomeFilial);
+                    if(erro.isSucesso()){
+                        System.out.println("Compra realizada com sucesso!");
+                        System.out.println("Pressione enter para continuar...\n");
+                    }
+                    else{
+                        System.out.println(erro.getMensagem());
+                        System.out.println("Pressione enter para continuar...\n");
+                    }
                     System.in.read();
                     break;
                 case 4:
@@ -85,7 +98,6 @@ public class Main {
                     System.exit(0);
                     break;
             }
-
         }
     }
     

@@ -27,18 +27,6 @@ public interface Servidor {
 
     /**
      * 
-     * @return
-     *     returns java.util.List<controle.Produto>
-     */
-    @WebMethod(operationName = "consultar_produtos")
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "consultar_produtos", targetNamespace = "http://controle/", className = "controle.ConsultarProdutos")
-    @ResponseWrapper(localName = "consultar_produtosResponse", targetNamespace = "http://controle/", className = "controle.ConsultarProdutosResponse")
-    @Action(input = "http://controle/Servidor/consultar_produtosRequest", output = "http://controle/Servidor/consultar_produtosResponse")
-    public List<Produto> consultarProdutos();
-
-    /**
-     * 
      * @param nome
      * @return
      *     returns controle.Cliente
@@ -66,6 +54,24 @@ public interface Servidor {
     public String hello(
         @WebParam(name = "name", targetNamespace = "")
         String name);
+
+    /**
+     * 
+     * @param a
+     * @param b
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "adiciona", targetNamespace = "http://controle/", className = "controle.Adiciona")
+    @ResponseWrapper(localName = "adicionaResponse", targetNamespace = "http://controle/", className = "controle.AdicionaResponse")
+    @Action(input = "http://controle/Servidor/adicionaRequest", output = "http://controle/Servidor/adicionaResponse")
+    public int adiciona(
+        @WebParam(name = "a", targetNamespace = "")
+        int a,
+        @WebParam(name = "b", targetNamespace = "")
+        int b);
 
     /**
      * 
@@ -98,14 +104,14 @@ public interface Servidor {
      * @param produto
      * @param quantidade
      * @return
-     *     returns boolean
+     *     returns controle.Erro
      */
     @WebMethod(operationName = "realizar_compra")
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "realizar_compra", targetNamespace = "http://controle/", className = "controle.RealizarCompra")
     @ResponseWrapper(localName = "realizar_compraResponse", targetNamespace = "http://controle/", className = "controle.RealizarCompraResponse")
     @Action(input = "http://controle/Servidor/realizar_compraRequest", output = "http://controle/Servidor/realizar_compraResponse")
-    public boolean realizarCompra(
+    public Erro realizarCompra(
         @WebParam(name = "cliente", targetNamespace = "")
         String cliente,
         @WebParam(name = "produto", targetNamespace = "")
@@ -117,20 +123,14 @@ public interface Servidor {
 
     /**
      * 
-     * @param a
-     * @param b
      * @return
-     *     returns int
+     *     returns java.util.List<controle.Produto>
      */
-    @WebMethod
+    @WebMethod(operationName = "consultar_produtos")
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "adiciona", targetNamespace = "http://controle/", className = "controle.Adiciona")
-    @ResponseWrapper(localName = "adicionaResponse", targetNamespace = "http://controle/", className = "controle.AdicionaResponse")
-    @Action(input = "http://controle/Servidor/adicionaRequest", output = "http://controle/Servidor/adicionaResponse")
-    public int adiciona(
-        @WebParam(name = "a", targetNamespace = "")
-        int a,
-        @WebParam(name = "b", targetNamespace = "")
-        int b);
+    @RequestWrapper(localName = "consultar_produtos", targetNamespace = "http://controle/", className = "controle.ConsultarProdutos")
+    @ResponseWrapper(localName = "consultar_produtosResponse", targetNamespace = "http://controle/", className = "controle.ConsultarProdutosResponse")
+    @Action(input = "http://controle/Servidor/consultar_produtosRequest", output = "http://controle/Servidor/consultar_produtosResponse")
+    public List<Produto> consultarProdutos();
 
 }

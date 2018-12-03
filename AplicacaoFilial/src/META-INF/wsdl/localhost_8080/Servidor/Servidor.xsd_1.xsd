@@ -96,7 +96,14 @@
 
 <xs:complexType name="realizar_compraResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
+<xs:element name="return" type="tns:erro" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="erro">
+<xs:sequence>
+<xs:element name="mensagem" type="xs:string" minOccurs="0"/>
+<xs:element name="sucesso" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 

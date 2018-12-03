@@ -19,11 +19,28 @@ public class ProdutoDAO {
 
     public ProdutoDAO() {
         listaProduto = new ArrayList<Produto>();
-        listaProduto.add(new Produto("Placa de aço", 50, 1200));
-        listaProduto.add(new Produto("Barra de ferro", 90, 500));
+        listaProduto.add(new Produto("borracha", 50, 2));
+        listaProduto.add(new Produto("lapis", 90, 3));
+        listaProduto.add(new Produto("caneta", 90, 7));
     }
     
     public List<Produto> getAll(){
         return listaProduto;
+    }
+    
+    public Produto getOne(String nome){
+        for (Produto p : listaProduto){
+            if (p.getNome().equals(nome))
+                return p;
+        }
+        return null;
+    }
+    
+    public void atualizarProduto(Produto p, int quantidade){
+        for(Produto prod : listaProduto){
+            if (p.getNome().equals(prod.getNome())){
+                prod.setQuantidade(prod.getQuantidade() - quantidade);
+            }
+        }
     }
 }

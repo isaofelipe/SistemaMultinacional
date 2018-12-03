@@ -19,7 +19,8 @@ public class ClienteDAO {
     public ClienteDAO() {
         listaCliente = new ArrayList<Cliente>();
         listaCliente.add(new Cliente("Joao", "(27)99999-9999", "Rua Europa", "A"));
-        listaCliente.add(new Cliente("Mateus", "(27)33333-9999", "Rua Trouxa", "B"));
+        listaCliente.add(new Cliente("Mateus", "(27)33333-9999", "Rua do Bobos n 0", "B"));
+        listaCliente.add(new Cliente("Isao", "(27)33333-9999", "Rua Japao", "B"));
     }
     
     public Cliente getOne(String nome){
